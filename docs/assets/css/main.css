@@ -1,1 +1,1 @@
-*{box-sizing:border-box;margin:0;padding:0}.page__header{display:flex;justify-content:space-evenly;margin-bottom:3rem}.page__footer{position:fixed;left:0;bottom:0;width:100vw;padding:1rem;color:#999}main{display:flex;justify-content:space-around}
+*{box-sizing:border-box;margin:0;padding:0}main{display:flex;justify-content:space-around}.resize{width:50%;height:50%}.selected{background-color:greenyellow}

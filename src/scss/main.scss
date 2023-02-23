@@ -7,3 +7,12 @@ main {
     display: flex;
     justify-content: space-around;
 }
+
+.resize {
+    width: 50%;
+    height: 50%;
+}
+
+.selected {
+    background-color: greenyellow;
+}

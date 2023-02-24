@@ -10,50 +10,41 @@ const favoriteList = document.querySelector('.js_favorite_List')
 let listCoctailsData = [];
 let listFavoriteData = [];
 
+const favoriteStored = localStorage.getItem('coctailsFav')
+
+if (favoriteStored) {
+    let listFavoriteData = JSON.parse(favoriteStored);
+    renderFavList(listFavoriteData);
+}
+
+
 // Fetch Inicial al cargar la pagina
 fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
     .then(response => response.json())
     .then(data => {
         listCoctailsData = data.drinks;
         renderList(listCoctailsData);
-         addEventToResults(listCoctailsData);
+        addEventToResults(listCoctailsData);
+        
     });
-
 // HandleSearchEvent Function
 function handleSearchEvent(event) {
     event.preventDefault();
-    let listCoctailsData = "";
+    
     let inputValue = inputSearch.value;
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputValue}`)
         .then(response => response.json())
         .then(data => {
             listCoctailsData = data.drinks;
             renderList(listCoctailsData);
-            addEventToResults(listCoctailsData);
+            addEventToResults();
         });       
+
 }
 
 // Event Search Btn
 btnSearch.addEventListener('click', handleSearchEvent);
 
-/*
-// Painting the Coctails List
-function renderList(renderListData) {
-     for (const coctail of renderListData) {
-            coctailArray.innerHTML += renderDrink(coctail);
-        }
-}
-// Painting each drink
-function renderDrink(coctail) {
-    let html =  ` <li>
-                <div>
-                    <h1> ${coctail.strDrink}</h1>
-                    <img src=" ${coctail.strImageSource}" alt="drink picture">
-                </div>
-            </li>`
-return html;
-}
-*/
 
 // render the Coctail List
 function renderList(renderListData) {
@@ -97,22 +88,25 @@ function renderDrink(coctail) {
 
 
 // Favorite Coctails handleClickEvent 
-
 function handleClickEvent(ev) {
     ev.preventDefault();
     const elementId = ev.currentTarget.id;
     ev.currentTarget.classList.toggle('selected');
 
     const favoriteCoctail = listCoctailsData.find((coctail) => coctail.idDrink === elementId);
-    
     const indexCoctail = listFavoriteData.indexOf(favoriteCoctail);
 
     if (!listFavoriteData.includes(favoriteCoctail)){
     listFavoriteData.push(favoriteCoctail);
     } else {
         listFavoriteData.splice(indexCoctail,1);
+        
     }
+    localStorage.setItem("coctailsFav", JSON.stringify(listFavoriteData));
+
+  
     renderFavList(listFavoriteData);
+    
 }
 
 // add event to all the coctails Results
@@ -122,3 +116,5 @@ function addEventToResults() {
         li.addEventListener("click", handleClickEvent);
     }
 }
+
+

@@ -10,41 +10,27 @@ const favoriteList = document.querySelector('.js_favorite_List')
 let listCoctailsData = [];
 let listFavoriteData = [];
 
+// paint localStorage Favorites
 const favoriteStored = localStorage.getItem('coctailsFav')
-
 if (favoriteStored) {
-    let listFavoriteData = JSON.parse(favoriteStored);
+    listFavoriteData = JSON.parse(favoriteStored);
     renderFavList(listFavoriteData);
 }
-
-
+    
 // Fetch Inicial al cargar la pagina
-fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
-    .then(response => response.json())
-    .then(data => {
-        listCoctailsData = data.drinks;
-        renderList(listCoctailsData);
-        addEventToResults(listCoctailsData);
-        
-    });
+fetchGet('margarita');
+console.log(listFavoriteData);
+console.log(JSON.parse(favoriteStored));
+
 // HandleSearchEvent Function
 function handleSearchEvent(event) {
     event.preventDefault();
-    
     let inputValue = inputSearch.value;
-    fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputValue}`)
-        .then(response => response.json())
-        .then(data => {
-            listCoctailsData = data.drinks;
-            renderList(listCoctailsData);
-            addEventToResults();
-        });       
-
+    fetchGet(inputValue);
 }
 
 // Event Search Btn
 btnSearch.addEventListener('click', handleSearchEvent);
-
 
 // render the Coctail List
 function renderList(renderListData) {
@@ -86,27 +72,24 @@ function renderDrink(coctail) {
     return li;
 }
 
-
 // Favorite Coctails handleClickEvent 
 function handleClickEvent(ev) {
     ev.preventDefault();
     const elementId = ev.currentTarget.id;
-    ev.currentTarget.classList.toggle('selected');
 
     const favoriteCoctail = listCoctailsData.find((coctail) => coctail.idDrink === elementId);
-    const indexCoctail = listFavoriteData.indexOf(favoriteCoctail);
+
+    const indexCoctail = listFavoriteData.findIndex((coctail) => coctail.idDrink === elementId);
 
     if (!listFavoriteData.includes(favoriteCoctail)){
     listFavoriteData.push(favoriteCoctail);
+    ev.currentTarget.classList.add('selected');
     } else {
-        listFavoriteData.splice(indexCoctail,1);
-        
+        listFavoriteData.splice(indexCoctail, 1);
+        ev.currentTarget.classList.remove('selected');   
     }
     localStorage.setItem("coctailsFav", JSON.stringify(listFavoriteData));
-
-  
     renderFavList(listFavoriteData);
-    
 }
 
 // add event to all the coctails Results
@@ -117,4 +100,13 @@ function addEventToResults() {
     }
 }
 
-
+// fetch function
+function fetchGet(value) {
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`)
+        .then(response => response.json())
+        .then(data => {
+            listCoctailsData = data.drinks;
+            renderList(listCoctailsData);
+            addEventToResults();
+        });       
+}

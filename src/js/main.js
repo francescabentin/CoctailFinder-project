@@ -16,7 +16,7 @@ if (favoriteStored) {
     listFavoriteData = JSON.parse(favoriteStored);
     renderFavList(listFavoriteData);
 }
-    
+
 // Fetch Inicial al cargar la pagina
 fetchGet('margarita');
 console.log(listFavoriteData);
@@ -81,7 +81,7 @@ function handleClickEvent(ev) {
 
     const indexCoctail = listFavoriteData.findIndex((coctail) => coctail.idDrink === elementId);
 
-    if (!listFavoriteData.includes(favoriteCoctail)){
+    if (indexCoctail === -1){
     listFavoriteData.push(favoriteCoctail);
     ev.currentTarget.classList.add('selected');
     } else {
@@ -97,6 +97,10 @@ function addEventToResults() {
     const liCoctailsList = document.querySelectorAll(".js-liEvent");
     for (const li of liCoctailsList) {
         li.addEventListener("click", handleClickEvent);
+    const favoriteCoctail = listFavoriteData.find((coctail)=>coctail.idDrink === li.id );
+    if (favoriteCoctail) {
+        li.classList.add('selected');
+    }
     }
 }
 

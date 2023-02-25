@@ -21,7 +21,7 @@ En el Kit hay 3 tipos de ficheros y carpetas:
 - Las carpetas `public/` y `docs/`, que son generadas automáticamente cuando se arranca el proyecto. El Kit lee los ficheros que hay dentro de `src/`, los procesa y los genera dentro de `public/` y `docs/`.
 
 Para la realización de la página web se ha utilizado:
-* HTML y CSS 
+* HTML / CSS / JS
 * SASS como preprocesador de CSS 
 * NPM como gestor de paquetes y dependencias 
 * Gulp, herramienta de automatización de tareas (WSK)

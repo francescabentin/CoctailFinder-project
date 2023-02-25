@@ -19,8 +19,6 @@ if (favoriteStored) {
 
 // Fetch Inicial al cargar la pagina
 fetchGet('margarita');
-console.log(listFavoriteData);
-console.log(JSON.parse(favoriteStored));
 
 // HandleSearchEvent Function
 function handleSearchEvent(event) {
@@ -46,20 +44,23 @@ function renderFavList(renderFavData) {
     favoriteList.innerHTML = '';
     for (const coctail of renderFavData) {
         const li = renderDrink(coctail);
+        li.setAttribute('class', 'favorite');
         favoriteList.appendChild(li);
     }
+    deleteFavorite();
 }
 
 // each Coctail
 function renderDrink(coctail) {
     const li = document.createElement('li');
     li.setAttribute('class','js-liEvent');
-     li.setAttribute('id', coctail.idDrink);
+    li.setAttribute('id', coctail.idDrink);
 
     const div = document.createElement('div');
     const h1 = document.createElement('h1');
     const img = document.createElement('img');
 
+    div.setAttribute('class', 'divCoctail');
     h1.textContent = coctail.strDrink;
     img.setAttribute('src', coctail.strDrinkThumb);
     img.setAttribute('alt', 'drink picture');
@@ -101,6 +102,36 @@ function addEventToResults() {
     if (favoriteCoctail) {
         li.classList.add('selected');
     }
+    }
+}
+
+//  handleClickDeleteEvent function
+function handleDeleteEvent(ev) {
+    const coctail = ev.currentTarget.parentNode.parentNode;
+    //remover de la lista con el index favorito y borrar elemento del dom
+    const indexCoctail = listFavoriteData.indexOf(coctail);
+    listFavoriteData.splice(indexCoctail, 1);
+    coctail.remove();
+
+    localStorage.setItem("coctailsFav", JSON.stringify(listFavoriteData));
+   
+    // remover la clase selected al remove item
+    const elementId = coctail.id;
+    const selectedArray = document.querySelectorAll('.selected');
+    const selected = listCoctailsData.find((item) => item.idDrink === elementId);
+    const selectedLi = document.getElementById(coctail.id);
+    selectedLi.classList.remove('selected');
+}
+
+// function create deletefunction to all the favorites
+function deleteFavorite() {
+    const favoriteList = document.querySelectorAll(".favorite");
+    for (const favorite of favoriteList) {
+        const div = favorite.querySelector('.divCoctail');
+        const icon = document.createElement('div');
+        icon.setAttribute('class','delete');
+        div.appendChild(icon);
+        icon.addEventListener('click',handleDeleteEvent);
     }
 }
 

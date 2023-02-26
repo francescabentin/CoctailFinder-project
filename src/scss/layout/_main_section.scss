@@ -1,21 +1,55 @@
-main {
+.main {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+
+    &__form {
+        width: 100%;
+        margin: 20px;
+
+        &__h1 {
+            font-family:$font-main;
+            font-size: 2rem;
+        }
+
+        &__input {
+            border-radius: 2px;
+        }
+
+        &__btn {
+            padding: 1px;
+        }
+    }
+
+    &__section {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+
+        &__fav{
+            width: 30%;
+            padding: 10px;
+
+            &__list {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        &__main {
+            width: 70%;
+            padding: 10px;
+
+            &__list {
+                display: flex;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                gap: 10px;
+                
+            }
+        }
+    }
+
 }
 
-.resize {
-    width: 50%;
-    height: 50%;
-}
 
-.selected {
-    background-color: greenyellow;
-}
-
-.delete {
-  width: 20px;
-    height: 20px;
- background-color: red;
-background-image: url(../images/x_circle_icon_174835.png);
-
-}

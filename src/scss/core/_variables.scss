@@ -8,3 +8,29 @@ $color-secondary: #999;
 // media queries
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1024px;
+
+.resize {
+    width: 70px;
+    height: 70px;
+}
+
+.selected {
+    background-color: greenyellow;
+}
+
+.delete {
+  width: 20px;
+    height: 20px;
+ background-color: red;
+background-image: url(../images/x_circle_icon_174835.png);
+background-size: cover;
+}
+
+.favorite .divCoctail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+
+}

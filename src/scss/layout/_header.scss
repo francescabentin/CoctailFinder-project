@@ -1,22 +1,27 @@
 .header {
+    background-color: black;
+        background-image: url("https://img.freepik.com/foto-gratis/cocteles-arreglo-coctelera-club-nocturno_23-2149093603.jpg?size=626&ext=jpg&ga=GA1.1.145799164.1677445078&semt=sph");
 
- 
+    
+        @media screen and (min-width:$tablet) {
+                padding-top: 80px;
+            }
     &__form {
 
         padding: 30px 20px;
 
         &__h1 {
             font-family:$font-main;
-            font-size: 1.5rem;
-            padding-bottom: 5px;
-        
+            font-size: 3rem;
+                padding-bottom: 10px;
+                color: white;
         }
 
         &__input {
             border-radius: 5px;
             font-family:$font-main;
             font-size: 0.8rem;
-            width: 140px;
+            width: 170px;
             height: 25px;
         }
 

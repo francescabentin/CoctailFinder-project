@@ -1,5 +1,7 @@
 .header {
-
+@media screen and (min-width: $tablet) {
+        padding-top: 80px;
+    }
  
     &__form {
 

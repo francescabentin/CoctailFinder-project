@@ -1,7 +1,7 @@
 'use strict';
 
 // Variables
-const coctailArray = document.querySelector('.js_coctails_List');
+const coctailList = document.querySelector('.js_coctails_List');
 const inputSearch = document.querySelector('.js_input');
 const btnSearch = document.querySelector('.js_btn_search');
 const btnReset = document.querySelector('.js_btn_reset');
@@ -10,17 +10,17 @@ const favoriteList = document.querySelector('.js_favorite_List')
 let listCoctailsData = [];
 let listFavoriteData = [];
 
+// fetch when the page loads
+fetchGet('margarita');
+
 // paint localStorage Favorites
 let favoriteStored = localStorage.getItem('coctailsFav')
 if (favoriteStored) {
     listFavoriteData = JSON.parse(favoriteStored);
-    renderFavList(listFavoriteData);
+    renderFavoriteList(listFavoriteData);
 }
 
-// Fetch Inicial al cargar la pagina
-fetchGet('margarita');
-
-// HandleSearchEvent Function
+// handleSearchEvent Function
 function handleSearchEvent(event) {
     event.preventDefault();
     let inputValue = inputSearch.value;
@@ -31,22 +31,22 @@ function handleSearchEvent(event) {
     }
 }
 
-// Event Search Btn
+// add event Search Btn
 btnSearch.addEventListener('click', handleSearchEvent);
 
 // render the Coctail List
-function renderList(renderListData) {
-    coctailArray.innerHTML = '';
-    for (const coctail of renderListData) {
+function renderList(coctailDataList) {
+    coctailList.innerHTML = '';
+    for (const coctail of coctailDataList) {
         const li = renderDrink(coctail);
-        coctailArray.appendChild(li);
+        coctailList.appendChild(li);
     }
 }
 
 // render the favorite List
-function renderFavList(renderFavData) {
+function renderFavoriteList(favoriteDataList) {
     favoriteList.innerHTML = '';
-    for (const coctail of renderFavData) {
+    for (const coctail of favoriteDataList) {
         const li = renderDrink(coctail);
         li.setAttribute('class', 'favorite');
         favoriteList.appendChild(li);
@@ -94,7 +94,7 @@ function handleClickEvent(ev) {
         ev.currentTarget.classList.remove('selected');
     }
     localStorage.setItem("coctailsFav", JSON.stringify(listFavoriteData));
-    renderFavList(listFavoriteData);
+    renderFavoriteList(listFavoriteData);
 }
 
 // add event to all the coctails Results
@@ -112,22 +112,18 @@ function addEventToResults() {
 //  handleClickDeleteEvent function
 function handleDeleteEvent(ev) {
     const coctail = ev.currentTarget.parentNode.parentNode;
-    //remover de la lista con el index favorito y borrar elemento del dom
+    //remove the coctail from favorite list and dom
     const indexCoctail = listFavoriteData.indexOf(coctail);
     listFavoriteData.splice(indexCoctail, 1);
-    coctail.remove();
-
+    renderFavoriteList(listFavoriteData);
+    // update the localStorage data
     localStorage.setItem("coctailsFav", JSON.stringify(listFavoriteData));
-
-    // remover la clase selected al remove item
-    const elementId = coctail.id;
-    const selectedArray = document.querySelectorAll('.selected');
-    const selected = listCoctailsData.find((item) => item.idDrink === elementId);
+    // remove the selected class from regular list
     const selectedLi = document.getElementById(coctail.id);
     selectedLi.classList.remove('selected');
 }
 
-// function create deletefunction to all the favorites
+// function add clickDeleteEvent to all the favorites
 function deleteFavorite() {
     const favoriteList = document.querySelectorAll(".favorite");
     for (const favorite of favoriteList) {
@@ -150,6 +146,7 @@ function handleClickReset(event) {
     }
 }
 
+// add reset event to the reset button
 btnReset.addEventListener('click', handleClickReset);
 
 // fetch function

@@ -1,0 +1,21 @@
+main {
+    display: flex;
+    justify-content: space-around;
+}
+
+.resize {
+    width: 50%;
+    height: 50%;
+}
+
+.selected {
+    background-color: greenyellow;
+}
+
+.delete {
+  width: 20px;
+    height: 20px;
+ background-color: red;
+background-image: url(../images/x_circle_icon_174835.png);
+
+}

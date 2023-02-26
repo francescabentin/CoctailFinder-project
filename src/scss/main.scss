@@ -1,26 +1,5 @@
 @import 'core/variables';
 @import 'core/reset';
-@import 'layout/header';
-@import 'layout/footer';
-
-main {
-    display: flex;
-    justify-content: space-around;
-}
-
-.resize {
-    width: 50%;
-    height: 50%;
-}
-
-.selected {
-    background-color: greenyellow;
-}
-
-.delete {
-  width: 20px;
-    height: 20px;
- background-color: red;
+@import 'layout/main_section';
 
 
-}

@@ -1,0 +1,32 @@
+.header {
+
+ 
+    &__form {
+
+        padding: 30px 20px;
+
+        &__h1 {
+            font-family:$font-main;
+            font-size: 1.5rem;
+            padding-bottom: 5px;
+        
+        }
+
+        &__input {
+            border-radius: 5px;
+            font-family:$font-main;
+            font-size: 0.8rem;
+            width: 140px;
+            height: 25px;
+        }
+
+        &__btn {
+            padding: 1px;
+            font-family:$font-main;
+            font-size: 0.8rem;
+            width: 45px;
+        }
+
+
+}
+}

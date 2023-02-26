@@ -6,31 +6,52 @@ $color-bg: #f3f4f5;
 $color-secondary: #999;
 
 // media queries
-$breakpoint-tablet: 768px;
-$breakpoint-desktop: 1024px;
+$tablet: 768px;
+$desktop: 1024px;
 
+
+//dom scss classes
 .resize {
-    width: 70px;
-    height: 70px;
+  width: 70px;
+  height: 70px;
 }
 
 .selected {
-    background-color: greenyellow;
+  background-color: black;
+  color: whitesmoke;
 }
 
 .delete {
   width: 20px;
-    height: 20px;
- background-color: red;
-background-image: url(../images/x_circle_icon_174835.png);
-background-size: cover;
+  height: 20px;
+  background-color:whitesmoke;
+  background-image: url(../images/delete.png);
+  background-size: cover;
 }
-
+// div de los favoritos cuando se crean
 .favorite .divCoctail {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  justify-content: space-between;
+ font-size: 0.6rem;
+ text-align: center;
 
+}
+
+.favorite .divCoctail img {
+  width: 50px;
+  height: 50px;
+}
+// div de los regulares cuando se crean
+.main__section__regular__list .divCoctail {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+}
+
+html {
+  min-height: 100%;
+  position: relative;
 }

@@ -6,34 +6,34 @@
     <title>Adalab Web Starter Kit</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/css/main.css" />
-    <link rel="icon" href="./assets/images/favicon.png" />
+    <link rel="icon" href="./assets/images/delete.png" />
   </head>
 
   <body>
-    <div class="page">
-      
-      <main>
-          <section>
-              <h1>Buscador de Cocteles</h1>
-              <input class="js_input" type="text">
-              <button class="js_btn_search">Buscar</button>
-              <button class="js_btn_reset">Reset</button>
-              <ul class="js_coctails_List"></ul>
-          </section>
-          <section>
-              <h2>Favoritos</h2>
-              <ul class="js_favorite_List">
-                  <!-- <li>
-                              <div>
-                                  <h1></h1>
-                                  <img src="" alt="drink picture">
-                              </div>
-                          </li>-->
-              </ul>
+      <header class="header">
+          <form class="header__form">
+              <h1 class="header__form__h1">Buscador de Cocteles</h1>
+              <input class="header__form__input js_input" type="text">
+              <button class="header__form__btn js_btn_search">Buscar</button>
+              <button class="header__form__btn js_btn_reset">Reset</button>
+          </form>
+      </header>
+      <main class="main">
+          <section class="main__section">
+              <div class="main__section__fav">
+                  <h2 class="main__section__fav__h2">Favoritos</h2>
+                  <ul class="main__section__fav__list js_favorite_List">
+                  </ul>
+              </div>
+              <div class="main__section__regular">
+                  <h2 class="main__section__regular__h2">Lista</h2>
+                  <ul class="main__section__regular__list js_coctails_List"></ul>
+              </div>
           </section>
       </main>
-      
-    </div>
+      <footer class="footer">
+          <span>Francesca Bentin</span>
+      </footer>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>

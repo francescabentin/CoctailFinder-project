@@ -61,8 +61,8 @@ function renderDrink(coctail) {
     li.setAttribute('id', coctail.idDrink);
 
     const div = document.createElement('div');
-    const h1 = document.createElement('h1');
     const img = document.createElement('img');
+    const h1 = document.createElement('h1');
 
     div.setAttribute('class', 'divCoctail');
     h1.textContent = coctail.strDrink;
@@ -70,8 +70,8 @@ function renderDrink(coctail) {
     img.setAttribute('alt', 'drink picture');
     img.setAttribute('class', 'resize');
 
-    div.appendChild(h1);
     div.appendChild(img);
+    div.appendChild(h1);
     li.appendChild(div);
 
     return li;
@@ -146,7 +146,7 @@ function handleClickReset(event) {
     }
 }
 
-// add reset event to the reset button
+// add reset event to the
 btnReset.addEventListener('click', handleClickReset);
 
 // fetch function

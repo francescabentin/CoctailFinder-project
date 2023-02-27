@@ -125,8 +125,8 @@ function handleDeleteEvent(ev) {
 
 // function add clickDeleteEvent to all the favorites
 function deleteFavorite() {
-    const favoriteList = document.querySelectorAll(".favorite");
-    for (const favorite of favoriteList) {
+    const favoritesAll = document.querySelectorAll(".favorite");
+    for (const favorite of favoritesAll) {
         const div = favorite.querySelector('.divCoctail');
         const icon = document.createElement('div');
         icon.setAttribute('class', 'delete');
@@ -136,14 +136,16 @@ function deleteFavorite() {
 }
 
 // Reset Function
-function handleClickReset(event) {
-    event.preventDefault();
+function handleClickReset(ev) {
+    ev.preventDefault();
     favoriteList.innerHTML = "";
     localStorage.removeItem('coctailsFav');
+    listFavoriteData
     const selected = document.querySelectorAll('.selected')
     for (const selec of selected) {
         selec.classList.remove('selected');
     }
+    listFavoriteData = [];
 }
 
 // add reset event to the

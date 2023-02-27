@@ -1,7 +1,8 @@
 
     .main {
         background-color: lightgray;
-    min-height: 400px;
+        height: auto;
+            min-height: calc(100% - 239px);
         
     &__section {
         display: flex;

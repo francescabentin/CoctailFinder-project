@@ -140,10 +140,12 @@ function handleClickReset(ev) {
     ev.preventDefault();
     favoriteList.innerHTML = "";
     localStorage.removeItem('coctailsFav');
+    listFavoriteData
     const selected = document.querySelectorAll('.selected')
     for (const selec of selected) {
         selec.classList.remove('selected');
     }
+    listFavoriteData = [];
 }
 
 // add reset event to the

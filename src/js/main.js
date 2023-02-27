@@ -22,9 +22,6 @@ if (favoriteStored) {
     renderFavoriteList(listFavoriteData);
 }
 
-// add reset event to the
-btnReset.addEventListener('click', handleClickReset);
-
 // fetch function
 function fetchGet(value) {
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`)
@@ -162,3 +159,5 @@ function handleClickReset(ev) {
     listFavoriteData = [];
 }
 
+// add reset event to the
+btnReset.addEventListener('click', handleClickReset);

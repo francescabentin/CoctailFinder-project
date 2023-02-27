@@ -2,8 +2,8 @@
 $font-main: 'Roboto', sans-serif;
 
 // colors
-$color-bg: #f3f4f5;
-$color-secondary: #999;
+$color-bg: black;
+$color-secondary: lightgray;
 
 // media queries
 $tablet: 768px;
@@ -17,7 +17,7 @@ $desktop: 1024px;
 }
 
 .selected {
-  background-color: black;
+  background-color: $color-bg;
   color: whitesmoke;
 }
 
@@ -27,18 +27,16 @@ $desktop: 1024px;
   background-color:whitesmoke;
   background-image: url(../images/delete.png);
   background-size: cover;
-  background-color: lightgray;
+  background-color: $color-secondary;
     margin-top: 5px;
 }
-// div de los favoritos cuando se crean
+// div favorites as render
 .favorite .divCoctail {
   display: flex;
   flex-direction: column;
   align-items: center;
  font-size: 0.6rem;
- text-align: center;
-
-
+text-align: center;
 }
 
 .favorite .divCoctail img {
@@ -53,7 +51,7 @@ $desktop: 1024px;
         height: 70px;
       }
     }
-// div de los regulares cuando se crean
+// div regular as render
 .main__section__regular__list .divCoctail {
   width: 150px;
   height: 120px;
@@ -61,10 +59,6 @@ $desktop: 1024px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid black;
+  border: 2px solid $color-bg;
   text-align: center;
-}
-
-img.resize {
-  padding-bottom: 5px;
 }

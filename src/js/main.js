@@ -10,6 +10,8 @@ const favoriteList = document.querySelector('.js_favorite_List')
 let listCoctailsData = [];
 let listFavoriteData = [];
 
+const placeholder = `https://via.placeholder.com/150x110/ffffff/666666/?text=C`;
+
 // fetch when the page loads
 fetchGet('margarita');
 
@@ -18,6 +20,20 @@ let favoriteStored = localStorage.getItem('coctailsFav')
 if (favoriteStored) {
     listFavoriteData = JSON.parse(favoriteStored);
     renderFavoriteList(listFavoriteData);
+}
+
+// add reset event to the
+btnReset.addEventListener('click', handleClickReset);
+
+// fetch function
+function fetchGet(value) {
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`)
+        .then(response => response.json())
+        .then(data => {
+            listCoctailsData = data.drinks;
+            renderList(listCoctailsData);
+            addEventToResults();
+        });
 }
 
 // handleSearchEvent Function
@@ -66,8 +82,8 @@ function renderDrink(coctail) {
 
     div.setAttribute('class', 'divCoctail');
     h1.textContent = coctail.strDrink;
-    img.setAttribute('src', coctail.strDrinkThumb);
-    img.setAttribute('alt', 'drink picture');
+    img.setAttribute('src', coctail.strDrinkThumb || placeholder);
+    img.setAttribute('alt', 'coctail picture');
     img.setAttribute('class', 'resize');
 
     div.appendChild(img);
@@ -81,9 +97,7 @@ function renderDrink(coctail) {
 function handleClickEvent(ev) {
     ev.preventDefault();
     const elementId = ev.currentTarget.id;
-
     const favoriteCoctail = listCoctailsData.find((coctail) => coctail.idDrink === elementId);
-
     const indexCoctail = listFavoriteData.findIndex((coctail) => coctail.idDrink === elementId);
 
     if (indexCoctail === -1) {
@@ -148,16 +162,3 @@ function handleClickReset(ev) {
     listFavoriteData = [];
 }
 
-// add reset event to the
-btnReset.addEventListener('click', handleClickReset);
-
-// fetch function
-function fetchGet(value) {
-    fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`)
-        .then(response => response.json())
-        .then(data => {
-            listCoctailsData = data.drinks;
-            renderList(listCoctailsData);
-            addEventToResults();
-        });
-}

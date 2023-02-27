@@ -2,7 +2,7 @@
     .main {
         background-color: lightgray;
         height: auto;
-            min-height: calc(100% - 239px);
+        min-height: calc(100% - 239px);
         
     &__section {
         display: flex;
@@ -15,6 +15,7 @@
         &__fav{
             width: 40%;
             padding: 10px;
+            box-shadow: inset -5px 2px 25px 10px rgba(0, 0, 0, 0.69);
 
             &__h2{
                 font-size: 1.5rem;
@@ -37,6 +38,7 @@
         &__regular {
             width: 60%;
             padding: 10px;
+            
 
             &__h2 {
                 font-size: 1.5rem;

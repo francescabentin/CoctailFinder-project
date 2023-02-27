@@ -162,6 +162,7 @@ function handleClickReset(ev) {
         selec.classList.remove("selected");
     }
     listFavoriteData = [];
+    inputSearch.value = "";
 }
 
 // add reset event to the

@@ -41,7 +41,11 @@ function fetchGet(value) {
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`)
         .then((response) => response.json())
         .then((data) => {
-            listCoctailsData = data.drinks;
+            listCoctailsData = data.drinks.map((x) => ({
+                name: x.strDrink,
+                img: x.strDrinkThumb,
+                id: x.idDrink,
+            }));
             renderList(listCoctailsData);
             addEventToResults();
         });
@@ -71,15 +75,15 @@ function renderFavoriteList(favoriteDataList) {
 function renderDrink(coctail) {
     const li = document.createElement("li");
     li.setAttribute("class", "js-liEvent");
-    li.setAttribute("id", coctail.idDrink);
+    li.setAttribute("id", coctail.id);
 
     const div = document.createElement("div");
     const img = document.createElement("img");
     const h1 = document.createElement("h1");
 
     div.setAttribute("class", "divCoctail");
-    h1.textContent = coctail.strDrink;
-    img.setAttribute("src", coctail.strDrinkThumb || placeholder);
+    h1.textContent = coctail.name;
+    img.setAttribute("src", coctail.img || placeholder);
     img.setAttribute("alt", "coctail picture");
     img.setAttribute("class", "resize");
 
@@ -95,10 +99,10 @@ function handleClickEvent(ev) {
     ev.preventDefault();
     const elementId = ev.currentTarget.id;
     const favoriteCoctail = listCoctailsData.find(
-        (coctail) => coctail.idDrink === elementId
+        (coctail) => coctail.id === elementId
     );
     const indexCoctail = listFavoriteData.findIndex(
-        (coctail) => coctail.idDrink === elementId
+        (coctail) => coctail.id === elementId
     );
     if (indexCoctail === -1) {
         listFavoriteData.push(favoriteCoctail);
@@ -117,7 +121,7 @@ function addEventToResults() {
     for (const li of liCoctailsList) {
         li.addEventListener("click", handleClickEvent);
         const favoriteCoctail = listFavoriteData.find(
-            (coctail) => coctail.idDrink === li.id
+            (coctail) => coctail.id === li.id
         );
         if (favoriteCoctail) {
             li.classList.add("selected");
